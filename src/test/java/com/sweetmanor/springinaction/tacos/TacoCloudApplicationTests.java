@@ -1,4 +1,4 @@
-package com.sweetmanor.springinaction;
+package com.sweetmanor.springinaction.tacos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
