@@ -1,9 +1,12 @@
 package com.sweetmanor.springinaction.tacos.data;
 
+import org.springframework.data.repository.CrudRepository;
+
 import com.sweetmanor.springinaction.tacos.domain.Taco;
 
-public interface TacoRepository {
-
-	Taco save(Taco design);
+/**
+ * JPA实现
+ */
+public interface TacoRepository extends CrudRepository<Taco, Long> {
 
 }

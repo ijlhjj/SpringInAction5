@@ -6,13 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
-import com.sweetmanor.springinaction.tacos.data.IngredientRepository;
 import com.sweetmanor.springinaction.tacos.domain.Ingredient;
 
-@Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+/**
+ * 改为JPA实现，本类不进行实例化
+ */
+// @Repository
+public class JdbcIngredientRepository {
 
 	private JdbcTemplate jdbc;
 
@@ -21,19 +22,19 @@ public class JdbcIngredientRepository implements IngredientRepository {
 		this.jdbc = jdbc;
 	}
 
-	@Override
+	// @Override
 	public List<Ingredient> findAll() {
 		String sql = "select id, name, type from Ingredient";
 		return jdbc.query(sql, this::mapRowToIngredient);
 	}
 
-	@Override
+	// @Override
 	public Ingredient findById(String id) {
 		String sql = "select id, name, type from Ingredient where id = ?";
 		return jdbc.queryForObject(sql, this::mapRowToIngredient, id);
 	}
 
-	@Override
+	// @Override
 	public Ingredient save(Ingredient ingredient) {
 		String sql = "insert into Ingredient (id, name, type) values (?, ?, ?)";
 		jdbc.update(sql, ingredient.getId(), ingredient.getName(), ingredient.getType().toString());

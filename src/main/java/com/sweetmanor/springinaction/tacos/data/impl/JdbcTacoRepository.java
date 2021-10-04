@@ -11,14 +11,15 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 
-import com.sweetmanor.springinaction.tacos.data.TacoRepository;
 import com.sweetmanor.springinaction.tacos.domain.Ingredient;
 import com.sweetmanor.springinaction.tacos.domain.Taco;
 
-@Repository
-public class JdbcTacoRepository implements TacoRepository {
+/**
+ * 改为JPA实现，本类不进行实例化
+ */
+// @Repository
+public class JdbcTacoRepository {
 
 	private JdbcTemplate jdbc;
 
@@ -27,7 +28,7 @@ public class JdbcTacoRepository implements TacoRepository {
 		this.jdbc = jdbc;
 	}
 
-	@Override
+	// @Override
 	public Taco save(Taco taco) {
 		long tacoId = saveTacoInfo(taco);
 		taco.setId(tacoId);
@@ -47,6 +48,7 @@ public class JdbcTacoRepository implements TacoRepository {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbc.update(psc, keyHolder);
 
+		// 没有获取到返回的主键
 		return keyHolder.getKey().longValue();
 	}
 

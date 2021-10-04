@@ -1,5 +1,6 @@
 package com.sweetmanor.springinaction.tacos.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,8 @@ public class DesignTacoController {
 
 	@GetMapping
 	public String showDesignForm(Model model) {
-		List<Ingredient> ingredients = ingredientRepo.findAll();
+		List<Ingredient> ingredients = new ArrayList<>();
+		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
 		Type[] types = Ingredient.Type.values();
 		for (Type type : types) {

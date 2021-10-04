@@ -8,15 +8,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sweetmanor.springinaction.tacos.data.OrderRepository;
 import com.sweetmanor.springinaction.tacos.domain.Order;
 import com.sweetmanor.springinaction.tacos.domain.Taco;
 
-@Repository
-public class JdbcOrderRepository implements OrderRepository {
+/**
+ * 改为JPA实现，本类不进行实例化
+ */
+// @Repository
+public class JdbcOrderRepository {
 
 	private SimpleJdbcInsert orderInserter;
 	private SimpleJdbcInsert orderTacoInserter;
@@ -29,7 +30,7 @@ public class JdbcOrderRepository implements OrderRepository {
 		this.objectMapper = new ObjectMapper();
 	}
 
-	@Override
+	// @Override
 	public Order save(Order order) {
 		order.setPlacedAt(new Date());
 		long orderId = saveOrderDetails(order);
