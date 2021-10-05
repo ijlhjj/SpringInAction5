@@ -5,6 +5,7 @@ Spring实战5示例程序
 * design页面参数校验失败时没有重新加载配料选项；
 * Taco设计上传时没有获取到ingredients值；
 * 项目运行时没有执行data.sql中的数据插入语句；
+* 认证缺少PasswordEncoder；
 
 
 ### License
