@@ -3,6 +3,7 @@ package com.sweetmanor.springinaction.tacos.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.sweetmanor.springinaction.tacos.data.OrderRepository;
 import com.sweetmanor.springinaction.tacos.domain.Order;
+import com.sweetmanor.springinaction.tacos.domain.User;
 
 @Controller
 @RequestMapping("/orders")
@@ -33,10 +35,13 @@ public class OrderController {
 	}
 
 	@PostMapping
-	public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+	public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus,
+			@AuthenticationPrincipal User user) {
 		if (errors.hasErrors()) {
 			return "orderForm";
 		}
+
+		order.setUser(user);
 
 		orderRepo.save(order);
 		sessionStatus.setComplete();// 重置session
