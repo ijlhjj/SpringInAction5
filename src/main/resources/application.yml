@@ -1,4 +1,4 @@
-### 数据源库配置
+### 数据库配置
 spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
@@ -8,3 +8,19 @@ spring:
     
     jpa:
         open-in-view: false
+
+### 数据库初始化脚本
+#spring:
+#   datasource:
+#       schema:
+#       - mysql-schema.sql
+#       data:
+#       - mysql-data.sql
+
+### 日志配置
+logging:
+    level:
+        root: WARN
+        org:
+            springframework:
+                security: DEBUG
