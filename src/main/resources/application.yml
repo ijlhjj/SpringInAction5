@@ -24,3 +24,11 @@ logging:
         org:
             springframework:
                 security: DEBUG
+
+### 服务器配置
+server:
+    port: 8443
+    ssl:
+        key-store: 'classpath:taco.jks' 
+        key-store-password: letmein
+        key-password: letmein
